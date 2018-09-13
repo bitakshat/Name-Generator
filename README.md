@@ -1,2 +1,2 @@
 # FirstGame
-Stone paper and scissor's game
+Stone || paper || scissor - Game
