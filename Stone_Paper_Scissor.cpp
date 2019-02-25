@@ -1,76 +1,75 @@
-////Stone paper scissor's game////
+/*Program that plays rock paper scissor's game*/
 #include<iostream>
-#include<cstdlib>
 #include<ctime>
-
+#include<cstdlib>
 using namespace std;
 
-int algo(int stone = 1, int paper = 2, int scissor = 3){
-	int com_choice;
-	int user_choice;
+int game_func(){
+	int stone = 1;
+	int paper = 2;
+	int scissor = 3;
+	int loose_condition; //Unused till now
 
-	srand(time(0));
-	com_choice = rand()%3+1;
+	unsigned seed;
+	int user_choice, com_choice;
+	bool winner = false; // Unused till now
+	////*****************************************************************////
 	
-	cout << "Enter your choice from the following: stone = 1 || paper = 2 || scissor = 3 " << endl;
+	cout <<"Enter your choice: Stone = 1 || Paper = 2 || Scissor = 3 ";
+	cout <<" ||Press 4 to quit the game! EXIT " << endl;
 	cin >> user_choice;
-	/*Deciding the output */
+
+	cout <<"You've selected: " << user_choice << endl;
 	
-	if(com_choice == 1){
-		cout <<"Computer choice: stone " << endl;
+	if(user_choice == 4){
+		cout <<"Thanks for playing! " << endl;
+		return NULL;
 	}
-	else if(com_choice == 2){
-		cout << "Compute choice: paper " << endl;
-	}
-	else{
-		cout << "Computer choice: scissor " << endl;
-	}
-
-	/*Condition Draw*/
-	if(user_choice == com_choice){
-		cout << "Game Draw! " << endl;
+	else if(user_choice > 4){
+		cout <<"Invalid Input! " << endl;
+		return NULL;
 	}
 
-	/*With stone*/
-	if(user_choice == stone && com_choice == paper){
-		cout << "You loose! Better luck next time! " << endl;
-	}
-	if(user_choice == stone && com_choice == scissor){
-		cout << "You win! " << endl;
-	}
-	/*With paper*/
-	if(user_choice == paper && com_choice == stone){
-		cout << "You win! " << endl;
-	}
-	if(user_choice == paper && com_choice == scissor){
-		cout << "You loose! Better luck next time! " << endl;
-	}
-	/*With scissor*/
-	if(user_choice == scissor && com_choice == stone){
-		cout << "You loose! Better luck next time! " << endl;
-	}
-	if(user_choice == scissor && com_choice == paper){
-		cout << "You win! " << endl;
+	seed = time(0);
+	srand(seed); 
+    
+    com_choice = (rand()%3 + 1);////Generates random numbers///
+    
+    if(com_choice == 1){
+    	cout << "Computer's choice is: Stone " << endl;
+    }
+    else if(com_choice == 2){
+    	cout <<"Computer's choice is: Paper " << endl;
+    }
+    else if(com_choice == 3){
+    	cout <<"Compter's choice is: Scissor " << endl;
+    }
+
+    /*******Scan for all win combinations********/
+
+    if((user_choice == 1 && com_choice == 3) || (user_choice == 2 && com_choice == 1) || (user_choice == 3 && com_choice == 2)){
+    	cout <<"You win! " << endl;
+    	return NULL;
+    }
+
+    /*******Scan for all loose combinations*******/
+
+    if((user_choice == 1 && com_choice == 3) || (user_choice == 2 && com_choice == 1) || (user_choice == 3 && com_choice == 1)){
+    	cout <<"Your loose! " << endl;
+    }
+    
+    /*****Scan for draw condition*******///
+    if(com_choice == user_choice){
+    	cout <<"Game draw! " << endl;
 	}
 
+	/*******Scan for all loose conditions********/
+	if(user_choice == 1 && com_choice == 2 || user_choice == 2 && com_choice == 3 || user_choice == 3 && com_choice == 1){
+		cout << "You loose " << endl;
+		return NULL;
+	}
 }
 
-int main(){ 
-	int stone = 1, paper = 2, scissor = 3;
-	int a,b,c;
-	int choice;
-	
-	algo(a,b,c);
-	
-	cout << "Would you like to play again? " << endl;
-	cin >> choice;
-
-	if(choice == 'Y' || choice == 'y'){
-		algo();
-	}
-	else if(choice == 'N' || choice == 'n'){
-		cout << "Thanks for playing! " << endl;
-	}
-
-	return 0;
+int main(void){
+	game_func();
 }
