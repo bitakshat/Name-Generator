@@ -6,7 +6,7 @@ using namespace std;
 
 void design_Header(){
 	cout << "*************************************" << endl;
-	cout << "**********!GET YOUR NAME!************" << endl;
+	cout << "*******!GET YOUR GAMING NAME!********" << endl;
 	cout << "*************************************" << endl;
 }
 
