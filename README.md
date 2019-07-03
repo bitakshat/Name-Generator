@@ -1,1 +1,1 @@
-Generates random Gaming Names
+Generated random gaming names.
